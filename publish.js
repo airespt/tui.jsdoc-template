@@ -45,8 +45,8 @@ function find(spec) {
 
 function tutoriallink(tutorial) {
     return helper.toTutorial(tutorial, null, {
-        tag: 'em', 
-        classname: 'disabled', 
+        tag: 'em',
+        classname: 'disabled',
         prefix: 'Tutorial: '
     });
 }
@@ -556,7 +556,9 @@ exports.publish = function(taffyData, opts, tutorials) {
     helper.setTutorials(tutorials);
 
     data = helper.prune(data);
-    data.sort('longname, version, since');
+    if (conf.default.sort !== false) {
+        data.sort('longname, version, since');
+    }
     helper.addEventListeners(data);
 
     var sourceFiles = {};
